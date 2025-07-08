@@ -16,7 +16,7 @@ st.title("💧 Water Quality Prediction App")
 
 # User input
 station_id = st.selectbox("Select Station ID", [str(i) for i in range(1, 60)])
-year = st.number_input("Enter Year", min_value=2000, max_value=2025, step=1)
+year = st.number_input("Enter Year", min_value=2000, max_value=2100, step=1)
 month = st.selectbox("Select Month", list(range(1, 13)))
 
 if st.button("Predict Pollutants"):
