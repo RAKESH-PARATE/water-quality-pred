@@ -1,126 +1,86 @@
-💧 Water Quality Prediction using Hybrid Machine Learning
+💧 Water Quality Prediction - Project Code
 
-Hi there! 👋
-Welcome to my water quality prediction project. I built this out of curiosity — to explore how machine learning can help forecast environmental factors, especially something as vital as water quality.
+This project predicts the concentration of six major water pollutants using hybrid machine learning techniques. It includes a complete data preprocessing pipeline, model training, performance analysis, and a Streamlit web app for real-time prediction.
 
-Using over 20 years of real-world data, this project predicts the concentration of pollutants at various monitoring stations using a hybrid ML pipeline and an interactive Streamlit web app.
+---
 
-🔍 What’s This Project About?
+📁 Project Structure
 
-Water pollution often gets noticed after it’s too late. What if we could predict it ahead of time?
+├── app.py                      → Streamlit app for user input and predictions  
+├── analyze_model_outputs.py    → Evaluates models and generates performance charts  
+├── water_quality_pred.py       → Main pipeline: data cleaning, feature engineering, model training  
+├── best_scaler.pkl             → Saved StandardScaler used to transform input features  
+├── best_columns.pkl            → List of input features used during training  
+├── model_cl.pkl                → Trained model for Chloride (CL)  
+├── model_no2.pkl               → Trained model for Nitrite (NO2)  
+├── model_no3.pkl               → Trained model for Nitrate (NO3)  
+├── model_o2.pkl                → Trained model for Dissolved Oxygen (O2)  
+├── model_po4.pkl               → Trained model for Phosphate (PO4)  
+├── model_so4.pkl               → Trained model for Sulfate (SO4)  
+├── data/                       → Folder containing dataset (PB_All_2000_2021.csv)  
+├── outputs/                    → Folder containing prediction and feature importance plots  
+└── README.md                   → This file
 
-This project brings together:
+---
 
-Historical water quality data from 2000 to 2021
+📌 How to Run the Project
 
-Smart pollutant-specific ML models
+1. **Install Dependencies**  
+   Ensure Python is installed, then run:
 
-A simple Streamlit app for real-time prediction
+   ```
+   pip install -r requirements.txt
+   ```
 
-It predicts levels of six key pollutants: O₂, NO₃, SO₄, PO₄, Cl⁻, and NO₂.
+2. **Train the Models**  
+   If you want to regenerate models from scratch:
 
-🎯 Goals
+   ```
+   python water_quality_pred.py
+   ```
 
-Clean and preprocess long-term water quality data
+3. **Visualize Predictions and Importance**  
+   Run this to generate `.png` output charts:
 
-Engineer seasonal, temporal, and spatial features
+   ```
+   python analyze_model_outputs.py
+   ```
 
-Build one machine learning model per pollutant
+4. **Launch Streamlit App**  
+   Use this command to open the web interface:
 
-Visualize and interpret predictions
+   ```
+   streamlit run app.py
+   ```
 
-Deploy a user-friendly prediction interface
+---
 
-⚙️ Tech & Tools Used
+📊 Project Highlights
 
-Purpose	Tools / Libraries
-Data Processing	Python, Pandas, NumPy
-Machine Learning	Scikit-learn, HistGradientBoostingRegressor
-Feature Engineering	Lag features, Rolling averages, KMeans clustering
-Visualization	Matplotlib
-App Development	Streamlit
-Model Management	Joblib
+- Forecasts pollutant levels: O₂, NO₃, SO₄, PO₄, CL⁻, and NO₂  
+- Built using HistGradientBoostingRegressor for each pollutant  
+- Includes seasonal, lag-based, and station-clustered features  
+- Scaler and column configuration stored in `.pkl` files  
+- Streamlit app allows prediction up to the year **2100**
 
-🧪 How It Works
+---
 
-Data Preprocessing
+⚠️ Notes
 
-Loaded water quality data from Punjab (2000–2021)
+- Trained on data from 2000 to 2021  
+- Future predictions (beyond 2025) are extrapolations  
+- Accuracy may vary outside the trained year range
 
-Removed missing values and outliers (z-score method)
+---
 
-Extracted date-based features: month, season, month_sin, etc.
+👨‍💻 Developed by
 
-Hybrid Feature Engineering
+**Rakesh Parate**  
+🔗 LinkedIn: https://www.linkedin.com/in/rakesh-parate  
+🔗 GitHub: https://github.com/RAKESH-PARATE
 
-Lag and rolling features for NO₃, PO₄, Cl⁻
-
-KMeans clustering based on pollutant means per station
-
-One-hot encoding of seasons, stations, and clusters
-
-Model Training
-
-Trained a separate HistGradientBoostingRegressor for each pollutant
-
-Applied log transformation for skewed data (NO₂ and Cl⁻)
-
-Evaluated using R² and MSE
-
-Streamlit App
-
-Input: Year, Month, Station ID
-
-Output: Predicted pollutant concentrations
-
-Models are pre-trained and loaded dynamically
-
-📊 Model Performance
-
-Achieved R² values up to ~0.90 for some pollutants
-
-Predicted vs Actual plots validate the performance
-
-Feature importance charts provide interpretability
-
-🖼️ Sample Output
-
-
-This chart shows the model's accuracy in predicting Chloride (Cl⁻) levels.
-
-🌐 Try It Out
-
-GitHub Repository:
-https://github.com/RAKESH-PARATE/water-quality-pred
-
-You can clone the repo and run the app locally using:
-
-arduino
-Copy
-Edit
-streamlit run app.py
-Make sure to install all dependencies listed in requirements.txt.
-
-🔮 What’s Next
-
-Deploy the app using Streamlit Cloud
-
-Connect live sensor data for real-time forecasting
-
-Expand to datasets from other states or countries
-
-Add support for alerts or pollution threshold warnings
-
-👋 About Me
-
-I'm Rakesh Parate, a Computer Science Engineering student who loves combining data, logic, and creativity to solve real-world problems.
-
-Let’s connect:
-
-LinkedIn: https://www.linkedin.com/in/rakesh-parate
-
-GitHub: https://github.com/RAKESH-PARATE
+---
 
 📄 License
 
-This project is released under the MIT License. You’re welcome to use, modify, and build upon it.
+This project is licensed under the MIT License.
